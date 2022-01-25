@@ -1,5 +1,5 @@
 import React from "react";
-import ReactPlayer from "react-player/youtube";
+import ReactPlayer from "react-player";
 import AspectRatioBox from "./AspectRatioBox";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
