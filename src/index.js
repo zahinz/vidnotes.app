@@ -6,13 +6,16 @@ import { BrowserRouter } from "react-router-dom";
 
 // ThemeProvider
 import { ThemeProvider } from "@mui/material/styles";
-import {AppTheme} from './Components/Theme/Palette/Palette'
+import { AppTheme } from "./Components/Theme/Palette/Palette";
+import Provider from "./AppContext";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <ThemeProvider theme={AppTheme}>
-    <App />
-    </ThemeProvider>
-  </BrowserRouter>,
+  <Provider>
+    <BrowserRouter>
+      <ThemeProvider theme={AppTheme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );

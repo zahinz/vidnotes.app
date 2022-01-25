@@ -22,7 +22,7 @@ export const AppTheme = createTheme({
       light: "#52525b",
     },
     line: {
-      main: "#E7EBF0",
+      main: "#e5e7eb",
     },
   },
 

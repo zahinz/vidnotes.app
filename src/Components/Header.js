@@ -27,11 +27,8 @@ export default function Header() {
         >
           vidnotes
         </Box>
-        <Box display={"flex"} columnGap={1}>
+        <Box display={"flex"}>
           <HeaderLinkInput />
-          <Button variant="contained" disableElevation>
-            Sign in
-          </Button>
         </Box>
       </Box>
     </AppContainer>

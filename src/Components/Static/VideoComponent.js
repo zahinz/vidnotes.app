@@ -1,14 +1,18 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 
 // function
 import { formatSecondsToMinutes } from "../Functions/Time";
 import NotesInput from "./NotesInput";
+import { useLocalStorage } from "../Functions/Storages";
+import { AppContext } from "../../AppContext";
 
 export default function VideoComponent() {
+  // useContext
+  const {videoUrl} = useContext(AppContext)
   // state
   const [progress, setProgress] = useState({
     played: 0,
@@ -19,16 +23,7 @@ export default function VideoComponent() {
   // return as object {played, playedSeconds, loaded, loadedSeconds}
 
   const [duration, setDuration] = useState(0);
-  const [videoUrl, setVideoUrl] = useState("");
-
-  // useEffect
-  useEffect(() => {
-    handleVideoUrl();
-  }, []);
-
-  const handleVideoUrl = () => {
-    setVideoUrl(localStorage.getItem("videoLink"));
-  };
+  
 
   const handleOnProgress = (state) => {
     setProgress(state);
