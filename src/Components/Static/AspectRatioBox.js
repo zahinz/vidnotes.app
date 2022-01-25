@@ -5,9 +5,9 @@ const AspectRatioBox = ({ children, ratio = 1 }) => {
   return (
     <Box sx={{ position: "relative" }}>
       <Box
-        backgroundColor={"#f3f4f6"}
+        backgroundColor={"#d1d5db"}
         borderRadius={1}
-        overflow={'hidden'}
+        overflow={"hidden"}
         sx={{
           position: "absolute",
           top: 0,

@@ -11,9 +11,9 @@ export const AppTheme = createTheme({
     },
     // secondary color
     secondary: {
-      main: "#1e40af",
-      dark: "#1e3a8a",
-      light: "#2563eb",
+      main: "#2563eb",
+      dark: "#1e40af",
+      light: "#60a5fa",
       contrastText: "#fff",
     },
     // text color

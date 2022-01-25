@@ -11,7 +11,7 @@ import SubmittedNotes from "../Components/Dynamic/SubmittedNotes";
 export default function Home() {
   return (
     <Box bgcolor={"#f3f4f6"} height={"100vh"}>
-      <AppContainer sx={{ paddingTop: "2rem" }}>
+      <AppContainer sx={{ paddingTop: "1.5rem" }}>
         <Box
           display={"flex"}
           columnGap={2}

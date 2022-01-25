@@ -17,6 +17,7 @@ export default function HeaderLinkInput() {
     <Box>
       <form noValidate autoComplete="off" onSubmit={handleLinkSubmit}>
         <TextField
+          autoFocus={!videoUrl ? true : false}
           sx={{ minWidth: 400 }}
           onChange={(e) => setLinkInput(e.target.value)}
           defaultValue={videoUrl}

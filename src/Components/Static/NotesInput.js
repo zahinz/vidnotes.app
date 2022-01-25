@@ -7,7 +7,8 @@ import { AppContext } from "../../AppContext";
 export default function NotesInput({ currentSeconds }) {
   const [notes, setNotes] = useState("");
   const [notesError, setNotesError] = useState(false);
-  const { submittedNotes, setSubmittedNotes } = useContext(AppContext);
+  const { videoUrl, submittedNotes, setSubmittedNotes } =
+    useContext(AppContext);
 
   // handlers
   const handleNotesSubmit = (e) => {
@@ -16,7 +17,6 @@ export default function NotesInput({ currentSeconds }) {
     if (notes === "") {
       setNotesError(true);
     } else {
-      console.log(currentSeconds, notes);
       setSubmittedNotes([
         ...submittedNotes,
         { time: currentSeconds, notes: notes },
@@ -37,7 +37,7 @@ export default function NotesInput({ currentSeconds }) {
     <Box display={"flex"} flexDirection={"column"} rowGap={1}>
       <form noValidate autoComplete="off" onSubmit={handleNotesSubmit}>
         <TextField
-          autoFocus
+          autoFocus={videoUrl ? true : false}
           placeholder="Press 'Shift' + 'Enter' to submit notes."
           onChange={(e) => setNotes(e.target.value)}
           fullWidth

@@ -3,16 +3,19 @@ import Typography from "@mui/material/Typography";
 
 import React, { useContext, useEffect, useState } from "react";
 import VideoPlayer from "./VideoPlayer";
+import PushPinSharpIcon from "@mui/icons-material/PushPinSharp";
 
 // function
 import { formatSecondsToMinutes } from "../Functions/Time";
 import NotesInput from "./NotesInput";
-import { useLocalStorage } from "../Functions/Storages";
+
 import { AppContext } from "../../AppContext";
+import Button from "@mui/material/Button";
 
 export default function VideoComponent() {
   // useContext
-  const {videoUrl} = useContext(AppContext)
+  const { videoUrl, submittedNotes, setSubmittedNotes } =
+    useContext(AppContext);
   // state
   const [progress, setProgress] = useState({
     played: 0,
@@ -23,7 +26,6 @@ export default function VideoComponent() {
   // return as object {played, playedSeconds, loaded, loadedSeconds}
 
   const [duration, setDuration] = useState(0);
-  
 
   const handleOnProgress = (state) => {
     setProgress(state);
@@ -40,10 +42,29 @@ export default function VideoComponent() {
         onProgress={handleOnProgress}
         onDuration={handleOnDuration}
       />
-      <Box>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
         <Typography color={"text.light"}>
           {`${formatSecondsToMinutes(progress.playedSeconds)} / ${duration}`}
         </Typography>
+        <Button
+          startIcon={<PushPinSharpIcon />}
+          sx={{ color: "text.light" }}
+          onClick={() =>
+            setSubmittedNotes([
+              ...submittedNotes,
+              {
+                time: formatSecondsToMinutes(progress.playedSeconds),
+                notes: "Pinned",
+              },
+            ])
+          }
+        >
+          Pin time
+        </Button>
       </Box>
       <NotesInput
         currentSeconds={formatSecondsToMinutes(progress.playedSeconds)}
