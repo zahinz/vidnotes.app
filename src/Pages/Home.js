@@ -13,7 +13,6 @@ export default function Home() {
 
   const handleSecondsClick = (second) => {
     player.current.seekTo(second, "seconds");
-    console.log(player.current);
   };
 
   return (
