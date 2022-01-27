@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 // Material UI
 import Box from "@mui/material/Box";
@@ -9,8 +9,15 @@ import VideoComponent from "../Components/Static/VideoComponent";
 import SubmittedNotes from "../Components/Dynamic/SubmittedNotes";
 
 export default function Home() {
+  const player = useRef();
+
+  const handleSecondsClick = (second) => {
+    player.current.seekTo(second, "seconds");
+    console.log(player.current);
+  };
+
   return (
-    <Box bgcolor={"#f3f4f6"} height={"100vh"}>
+    <Box bgcolor={"#f3f4f6"} height={{ xs: "auto", md: "calc(100vh - 70px)" }}>
       <AppContainer sx={{ paddingTop: "1.5rem" }}>
         <Box
           display={"flex"}
@@ -20,13 +27,12 @@ export default function Home() {
             xs: "column",
             md: "row",
           }}
-          height={"calc(100vh - 150px)"}
         >
           <Box width={{ md: 2 / 3 }}>
-            <VideoComponent />
+            <VideoComponent ref={player} />
           </Box>
           <Box width={{ md: 1 / 3 }}>
-            <SubmittedNotes />
+            <SubmittedNotes handleSecondsClick={handleSecondsClick} />
           </Box>
         </Box>
       </AppContainer>

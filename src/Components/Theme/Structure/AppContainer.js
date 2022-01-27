@@ -5,9 +5,7 @@ import React from "react";
 export default function AppContainer({ children, sx }) {
   return (
     <Box sx={sx}>
-      <Container maxWidth="lg" sx={{ px: "1rem" }}>
-        {children}
-      </Container>
+      <Container maxWidth="lg">{children}</Container>
     </Box>
   );
 }

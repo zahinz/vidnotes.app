@@ -1,20 +1,22 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import ReactPlayer from "react-player";
 import AspectRatioBox from "./AspectRatioBox";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import SentimentVeryDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentVeryDissatisfiedOutlined";
 
-export default function VideoPlayer({ url, onProgress, onDuration }) {
+const VideoPlayer = forwardRef(({ url, onProgress, onDuration }, ref) => {
   return (
     <AspectRatioBox ratio={16 / 9}>
       {url ? (
         <ReactPlayer
+          ref={ref}
           url={url}
           height={"100%"}
           width={"100%"}
           onProgress={onProgress}
           onDuration={onDuration}
+          playing={true}
           controls
         />
       ) : (
@@ -35,4 +37,6 @@ export default function VideoPlayer({ url, onProgress, onDuration }) {
       )}
     </AspectRatioBox>
   );
-}
+});
+
+export default VideoPlayer;

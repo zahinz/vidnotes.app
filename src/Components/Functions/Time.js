@@ -1,4 +1,5 @@
 import { intervalToDuration } from "date-fns";
+
 // format seconds to minutes
 
 export const formatSecondsToMinutes = (seconds) => {

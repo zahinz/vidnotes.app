@@ -1,7 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { submitArrayNotes } from "../Functions/Storages";
 import { AppContext } from "../../AppContext";
 
 export default function NotesInput({ currentSeconds }) {
@@ -37,12 +36,13 @@ export default function NotesInput({ currentSeconds }) {
     <Box display={"flex"} flexDirection={"column"} rowGap={1}>
       <form noValidate autoComplete="off" onSubmit={handleNotesSubmit}>
         <TextField
+          disabled={!videoUrl ? true : false}
           autoFocus={videoUrl ? true : false}
           placeholder="Press 'Shift' + 'Enter' to submit notes."
           onChange={(e) => setNotes(e.target.value)}
           fullWidth
           multiline
-          rows={7}
+          rows={6}
           onKeyDown={handleKeyDownSubmit}
           value={notes}
           error={notesError}
