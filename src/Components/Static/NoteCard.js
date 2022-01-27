@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Input from "@mui/material/TextField";
 import Link from "@mui/material/Link";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 // function
 import { formatSecondsToMinutes } from "../Functions/Time";
@@ -76,11 +76,11 @@ export default function NoteCard({ index, list, handleSecondsClick }) {
         right={0}
         top={0}
         boxSizing={"border-box"}
-        bgcolor={"primary.light"}
+        bgcolor={!isEdit ? "primary.main" : "success.light"}
         sx={{
           transition: "all 100ms ease-in",
-          width: 50,
-          opacity: 0,
+          width: !isEdit ? 50 : 60,
+          opacity: !isEdit ? 0 : 1,
           padding: 0,
           "&:hover": { width: 60, padding: 2, opacity: 1 },
         }}
@@ -90,15 +90,21 @@ export default function NoteCard({ index, list, handleSecondsClick }) {
           disableRipple
           onClick={() => setIsEdit(!isEdit)}
         >
-          <ModeEditIcon fontSize="small" sx={{ color: "white" }} />
+          {!isEdit ? (
+            <ModeEditIcon fontSize="small" sx={{ color: "white" }} />
+          ) : (
+            <CheckCircleIcon fontSize="small" sx={{ color: "white" }} />
+          )}
         </IconButton>
-        <IconButton
-          size="small"
-          disableRipple
-          onClick={() => handleDelete(index)}
-        >
-          <DeleteIcon fontSize="small" sx={{ color: "white" }} />
-        </IconButton>
+        {!isEdit ? (
+          <IconButton
+            size="small"
+            disableRipple
+            onClick={() => handleDelete(index)}
+          >
+            <DeleteIcon fontSize="small" sx={{ color: "white" }} />
+          </IconButton>
+        ) : null}
       </Box>
     </Box>
   );
