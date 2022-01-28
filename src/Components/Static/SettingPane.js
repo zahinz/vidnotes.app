@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SaveAltOutlinedIcon from "@mui/icons-material/SaveAltOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { AppContext } from "../../AppContext";
 import { downloadCsvFile } from "../Functions/Storages";
 
@@ -41,7 +41,8 @@ export default function SettingPane() {
             borderColor={"line.main"}
             borderRadius={1}
             marginTop={1}
-            paddingY={1.5}
+            paddingTop={1}
+            paddingBottom={2}
             paddingX={2.5}
           >
             <List>
