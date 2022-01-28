@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Switch from "@mui/material/Switch";
 
 import React, { forwardRef, useContext, useState } from "react";
 import VideoPlayer from "./VideoPlayer";
@@ -14,8 +15,15 @@ import Button from "@mui/material/Button";
 
 const VideoComponent = forwardRef(({}, ref) => {
   // useContext
-  const { videoUrl, submittedNotes, setSubmittedNotes, progress, setProgress } =
-    useContext(AppContext);
+  const {
+    videoUrl,
+    submittedNotes,
+    setSubmittedNotes,
+    progress,
+    setProgress,
+    isAutoPause,
+    setIsAutoPause,
+  } = useContext(AppContext);
   // state
 
   const [duration, setDuration] = useState(0);
@@ -27,6 +35,9 @@ const VideoComponent = forwardRef(({}, ref) => {
   const handleOnDuration = (duration) => {
     setDuration(formatSecondsToMinutes(duration));
   };
+  const handleAutoPause = () => {
+    setIsAutoPause(!isAutoPause);
+  };
 
   return (
     <Box width={1} display={"flex"} flexDirection={"column"} rowGap={2}>
@@ -36,6 +47,7 @@ const VideoComponent = forwardRef(({}, ref) => {
         onProgress={handleOnProgress}
         onDuration={handleOnDuration}
       />
+
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -46,22 +58,38 @@ const VideoComponent = forwardRef(({}, ref) => {
             ? `${formatSecondsToMinutes(progress.playedSeconds)} / ${duration}`
             : null}
         </Typography>
-        <Button
-          disabled={!videoUrl ? true : false}
-          startIcon={<PushPinSharpIcon />}
-          sx={{ color: "text.light" }}
-          onClick={() =>
-            setSubmittedNotes([
-              ...submittedNotes,
-              {
-                time: progress.playedSeconds,
-                notes: "Pinned",
-              },
-            ])
-          }
-        >
-          Pin time
-        </Button>
+        <Box display={"flex"} rowGap={2}>
+          <Box display={"flex"} alignItems={"center"}>
+            <Typography
+              color={"text.light"}
+              fontWeight={500}
+              fontSize={"0.875rem"}
+            >
+              AUTO PAUSE
+            </Typography>
+            <Switch
+              disabled={!videoUrl ? true : false}
+              checked={isAutoPause ? true : false}
+              onChange={() => handleAutoPause()}
+            />
+          </Box>
+          <Button
+            disabled={!videoUrl ? true : false}
+            startIcon={<PushPinSharpIcon />}
+            sx={{ color: "text.light" }}
+            onClick={() =>
+              setSubmittedNotes([
+                ...submittedNotes,
+                {
+                  time: progress.playedSeconds,
+                  notes: "Pinned",
+                },
+              ])
+            }
+          >
+            Pin time
+          </Button>
+        </Box>
       </Box>
       <NotesInput currentSeconds={progress.playedSeconds} />
     </Box>

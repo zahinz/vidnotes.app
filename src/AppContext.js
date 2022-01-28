@@ -12,6 +12,8 @@ const Provider = ({ children }) => {
     loaded: 0,
     loadedSeconds: 0,
   });
+  const [isAutoPause, setIsAutoPause] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const values = {
     videoUrl,
@@ -20,6 +22,10 @@ const Provider = ({ children }) => {
     setSubmittedNotes,
     progress,
     setProgress,
+    isAutoPause,
+    setIsAutoPause,
+    isPlaying,
+    setIsPlaying,
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 };

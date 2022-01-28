@@ -6,8 +6,13 @@ import { AppContext } from "../../AppContext";
 export default function NotesInput({ currentSeconds }) {
   const [notes, setNotes] = useState("");
   const [notesError, setNotesError] = useState(false);
-  const { videoUrl, submittedNotes, setSubmittedNotes } =
-    useContext(AppContext);
+  const {
+    videoUrl,
+    submittedNotes,
+    setSubmittedNotes,
+    isAutoPause,
+    setIsPlaying,
+  } = useContext(AppContext);
 
   // handlers
   const handleNotesSubmit = (e) => {
@@ -21,6 +26,7 @@ export default function NotesInput({ currentSeconds }) {
         { time: currentSeconds, notes: notes },
       ]);
     }
+    setIsPlaying(true);
     e.preventDefault();
   };
 
@@ -32,6 +38,13 @@ export default function NotesInput({ currentSeconds }) {
     }
   };
 
+  const handleInputChange = (e) => {
+    setNotes(e);
+    if (isAutoPause) {
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <Box display={"flex"} flexDirection={"column"} rowGap={1}>
       <form noValidate autoComplete="off" onSubmit={handleNotesSubmit}>
@@ -39,7 +52,8 @@ export default function NotesInput({ currentSeconds }) {
           disabled={!videoUrl ? true : false}
           autoFocus={videoUrl ? true : false}
           placeholder="Press 'Shift' + 'Enter' to submit notes."
-          onChange={(e) => setNotes(e.target.value)}
+          onChange={(e) => handleInputChange(e.target.value)}
+          onBlur={() => setIsPlaying(true)}
           fullWidth
           multiline
           rows={6}

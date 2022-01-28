@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import { AppContext } from "../../AppContext";
-import { Button } from "@mui/material";
 
 export default function HeaderLinkInput() {
   const { videoUrl, setVideoUrl } = useContext(AppContext);

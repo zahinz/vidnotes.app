@@ -1,11 +1,13 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useContext } from "react";
 import ReactPlayer from "react-player";
 import AspectRatioBox from "./AspectRatioBox";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import SentimentVeryDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentVeryDissatisfiedOutlined";
+import { AppContext } from "../../AppContext";
 
 const VideoPlayer = forwardRef(({ url, onProgress, onDuration }, ref) => {
+  const { isPlaying } = useContext(AppContext);
   return (
     <AspectRatioBox ratio={16 / 9}>
       {url ? (
@@ -16,7 +18,7 @@ const VideoPlayer = forwardRef(({ url, onProgress, onDuration }, ref) => {
           width={"100%"}
           onProgress={onProgress}
           onDuration={onDuration}
-          playing={true}
+          playing={isPlaying}
           controls
         />
       ) : (
