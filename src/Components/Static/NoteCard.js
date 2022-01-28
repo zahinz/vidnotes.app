@@ -14,11 +14,10 @@ import { AppContext } from "../../AppContext";
 export default function NoteCard({ index, list, handleSecondsClick }) {
   const { submittedNotes, setSubmittedNotes } = useContext(AppContext);
   const [isEdit, setIsEdit] = useState(false);
+
   const handleDelete = (index) => {
-    let items = submittedNotes;
-    items.splice(index, 1);
+    let items = submittedNotes.filter((item, idx) => idx !== index);
     setSubmittedNotes(items);
-    console.log(submittedNotes);
   };
 
   const handleChange = (value, index) => {

@@ -10,9 +10,7 @@ export default function SubmittedNotes({ handleSecondsClick }) {
   const { submittedNotes, setSubmittedNotes, videoUrl } =
     useContext(AppContext);
 
-  
-
-  
+  useEffect(() => {}, [submittedNotes]);
 
   return (
     <Box display={"flex"} rowGap={2} flexDirection={"column"} height={1}>
