@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import SaveAltOutlinedIcon from "@mui/icons-material/SaveAltOutlined";
+
 import { AppContext } from "../../AppContext";
-import { downloadCsvFile } from "../Functions/Storages";
+
 import NoteCard from "../Static/NoteCard";
 
 export default function SubmittedNotes({ handleSecondsClick }) {
-  const { submittedNotes, setSubmittedNotes, videoUrl } =
-    useContext(AppContext);
+  const { submittedNotes } = useContext(AppContext);
 
   return (
     <Box display={"flex"} rowGap={2} flexDirection={"column"} height={1}>

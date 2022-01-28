@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import List from "@mui/material/List";
@@ -20,6 +20,25 @@ export default function SettingPane() {
     useContext(AppContext);
   const [isPaneOpen, setIsPaneOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  useEffect((e) => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (isPaneOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsPaneOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  });
+
+  const ref = useRef("ref");
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -44,6 +63,7 @@ export default function SettingPane() {
             paddingTop={1}
             paddingBottom={2}
             paddingX={2.5}
+            ref={ref}
           >
             <List>
               <ListItem disablePadding>
@@ -61,6 +81,7 @@ export default function SettingPane() {
                 <ListItemButton
                   alignItems={"center"}
                   onClick={() => downloadCsvFile(submittedNotes, videoUrl)}
+                  disabled={submittedNotes.length === 0}
                 >
                   <ListItemIcon sx={{ minWidth: 40 }}>
                     <SaveAltOutlinedIcon />
@@ -81,8 +102,10 @@ export default function SettingPane() {
                 }}
               >
                 <ListItemButton
+                  color="primary"
                   alignItems={"center"}
                   onClick={() => setSubmittedNotes([])}
+                  disabled={submittedNotes.length === 0}
                 >
                   <ListItemIcon
                     sx={{
