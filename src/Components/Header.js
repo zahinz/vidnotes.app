@@ -3,7 +3,7 @@ import AppContainer from "./Theme/Structure/AppContainer";
 
 import React from "react";
 import HeaderLinkInput from "./Static/HeaderLinkInput";
-import SettingModal from "./Static/SettingModal";
+import SettingPane from "./Static/SettingPane";
 
 export default function Header() {
   return (
@@ -29,7 +29,7 @@ export default function Header() {
         </Box>
         <Box display={"flex"} alignItems={"center"} columnGap={1}>
           <HeaderLinkInput />
-          <SettingModal />
+          <SettingPane />
         </Box>
       </Box>
     </AppContainer>

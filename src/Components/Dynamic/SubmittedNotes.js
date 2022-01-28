@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SaveAltOutlinedIcon from "@mui/icons-material/SaveAltOutlined";
@@ -10,42 +10,8 @@ export default function SubmittedNotes({ handleSecondsClick }) {
   const { submittedNotes, setSubmittedNotes, videoUrl } =
     useContext(AppContext);
 
-  useEffect(() => {}, [submittedNotes]);
-
   return (
     <Box display={"flex"} rowGap={2} flexDirection={"column"} height={1}>
-      <Box
-        display={"flex"}
-        columnGap={1}
-        variant={"text"}
-        width={1}
-        justifyContent={"space-between"}
-      >
-        <Button
-          disabled={!videoUrl ? true : false}
-          onClick={() => downloadCsvFile(submittedNotes, videoUrl)}
-          variant="contained"
-          disableElevation
-          startIcon={<SaveAltOutlinedIcon />}
-          color="secondary"
-          sx={{
-            width: "70%",
-            paddingY: 2,
-          }}
-        >
-          Download notes
-        </Button>
-        <Button
-          sx={{
-            width: "30%",
-          }}
-          disabled={!videoUrl ? true : false}
-          onClick={() => setSubmittedNotes([])}
-        >
-          Clear all
-        </Button>
-      </Box>
-
       <Box
         height={{ xs: "auto", md: "calc(100vh - 200px)" }}
         paddingBottom={0}
